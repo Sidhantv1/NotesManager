@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
+import com.example.notesmanager.R
 import com.example.notesmanager.databinding.SheetAddNoteBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
@@ -14,6 +15,8 @@ class AddNoteBottomSheet(
 ) : BottomSheetDialogFragment() {
 
     private lateinit var binding: SheetAddNoteBinding
+
+    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(
         inflater: LayoutInflater,
