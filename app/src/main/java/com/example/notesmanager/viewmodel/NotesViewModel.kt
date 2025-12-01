@@ -11,21 +11,44 @@ class NotesViewModel(private val repo: NotesRepository) : ViewModel() {
 
     private val searchQuery = MutableStateFlow("")
 
+    private val selectedTags = MutableStateFlow<List<String>>(emptyList())
+
     val notesFlow: StateFlow<List<Note>> =
-        searchQuery
-            .debounce(200)
-            .flatMapLatest { query ->
-                if (query.isBlank()) repo.getNotes()
-                else repo.searchNotes(query)
+        combine(
+            repo.getNotes(),
+            searchQuery,
+            selectedTags
+        ) { notes, query, tags ->
+            var filtered = notes
+
+            if (query.isNotBlank()) {
+                val q = query.lowercase()
+                filtered = filtered.filter {
+                    it.title.lowercase().contains(q) ||
+                            it.body.lowercase().contains(q) ||
+                            it.tagsCsv.lowercase().contains(q)
+                }
             }
-            .stateIn(
-                viewModelScope,
-                SharingStarted.Lazily,
-                emptyList()
-            )
+
+            if (tags.isNotEmpty()) {
+                filtered = filtered.filter { note ->
+                    val noteTags = note.tagsCsv.split(",")
+                    tags.all { selectedTag -> noteTags.contains(selectedTag) }
+                }
+            }
+            filtered
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            emptyList()
+        )
 
     fun setQuery(query: String) {
         searchQuery.value = query
+    }
+
+    fun setSelectedTags(tags: List<String>) {
+        selectedTags.value = tags
     }
 
     fun addNote(note: Note) {
