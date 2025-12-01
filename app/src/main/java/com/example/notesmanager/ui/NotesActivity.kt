@@ -58,21 +58,18 @@ class NotesActivity : AppCompatActivity() {
                 setChipBackgroundColorResource(R.color.tag_background)
                 setTextAppearance(R.style.TagTextStyle)
 
-                setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-                        viewModel.setQuery(tag)
-                    } else {
-                        val anySelected = binding.chipGroupFilters.children
-                            .any { (it as Chip).isChecked }
+                setOnCheckedChangeListener { _, _ ->
+                    val selected = binding.chipGroupFilters.children
+                        .filter { (it as Chip).isChecked }
+                        .map { (it as Chip).text.toString() }
+                        .toList()
 
-                        if (!anySelected) {
-                            viewModel.setQuery("")
-                        }
-                    }
+                    viewModel.setSelectedTags(selected)
                 }
             }
             binding.chipGroupFilters.addView(chip)
         }
+
     }
 
     private fun setupRecycler() {
