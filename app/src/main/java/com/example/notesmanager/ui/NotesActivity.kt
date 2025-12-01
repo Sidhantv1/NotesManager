@@ -1,4 +1,4 @@
-package com.example.notesmanager.ui.xml
+package com.example.notesmanager.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -15,8 +15,6 @@ import com.example.notesmanager.data.AppDatabase
 import com.example.notesmanager.data.Note
 import com.example.notesmanager.databinding.ActivityNotesBinding
 import com.example.notesmanager.repository.NotesRepository
-import com.example.notesmanager.ui.AddNoteBottomSheet
-import com.example.notesmanager.ui.NotesAdapter
 import com.example.notesmanager.viewmodel.NotesViewModel
 import com.example.notesmanager.viewmodel.NotesViewModelFactory
 import com.google.android.material.chip.Chip
