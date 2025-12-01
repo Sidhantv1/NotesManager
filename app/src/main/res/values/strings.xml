@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">NotesManager</string>
-    <string name="search_notes">Search notes by title, body or tags...</string>
+    <string name="search_notes">Search notes by title, body or tags…</string>
     <string name="notes_manager">Notes Manager</string>
     <string name="organise_your_notes_with_tags_and_search">Organise your notes with tags and search</string>
     <string name="filter_by_tags">Filter by tags:</string>
     <string name="title">Title</string>
     <string name="body">Body</string>
-    <string name="select_tags">Select Tags</string>
+    <string name="select_tags">Select Tags: </string>
+    <string name="add_note">Add Note</string>
 </resources>

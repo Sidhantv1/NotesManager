@@ -53,7 +53,7 @@ class NotesActivity : AppCompatActivity() {
         tags.forEach { tag ->
             val chip = Chip(this).apply {
                 text = tag
-                isCheckable = true         // selectable
+                isCheckable = true
                 isChecked = false
                 isClickable = true
                 setChipBackgroundColorResource(R.color.tag_background)
