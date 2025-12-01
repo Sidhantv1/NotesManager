@@ -30,9 +30,7 @@ class NotesActivity : AppCompatActivity() {
     private val viewModel: NotesViewModel by viewModels {
         NotesViewModelFactory(
             NotesRepository(
-                Room.databaseBuilder(
-                    this, AppDatabase::class.java, "notes_db"
-                ).build().noteDao()
+                AppDatabase.getInstance(applicationContext).noteDao()
             )
         )
     }
