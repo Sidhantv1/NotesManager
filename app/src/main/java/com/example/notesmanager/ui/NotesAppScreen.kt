@@ -45,6 +45,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notesmanager.data.Note
+import com.example.notesmanager.utils.DateUtils.formatDate
 import com.example.notesmanager.viewmodel.NotesViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -60,7 +61,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
             }
         }
     ) { padding ->
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -69,7 +69,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-
             item {
                 Text(
                     "Notes Manager",
@@ -123,7 +122,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
         )
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -231,7 +229,7 @@ fun NoteCard(note: Note, onDelete: (Note) -> Unit) {
 
             Spacer(Modifier.height(4.dp))
 
-            Text(note.body)
+            Text(note.body, style = TextStyle(fontSize = 14.sp))
 
             Spacer(Modifier.height(8.dp))
 
@@ -240,6 +238,9 @@ fun NoteCard(note: Note, onDelete: (Note) -> Unit) {
                     AssistChip(onClick = {}, label = { Text(it) })
                 }
             }
+            Spacer(Modifier.height(8.dp))
+
+            Text(formatDate(note.createdAt), style = TextStyle(fontSize = 14.sp))
         }
 
     }
