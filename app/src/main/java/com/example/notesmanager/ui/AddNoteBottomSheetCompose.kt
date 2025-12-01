@@ -44,13 +44,13 @@ fun AddNoteBottomSheetCompose(
         onDismissRequest = { onDismiss() },
         sheetState = sheetState
     ) {
-
         Column(Modifier.padding(16.dp)) {
 
             TextField(
                 value = title,
                 onValueChange = { title = it },
-                placeholder = { Text("Title") }
+                placeholder = { Text("Title") },
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(Modifier.height(12.dp))

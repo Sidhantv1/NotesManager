@@ -47,7 +47,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
             }
         }
     ) { padding ->
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -55,6 +54,8 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
                 .padding(16.dp)
         ) {
             Text("Notes Manager", style = MaterialTheme.typography.headlineSmall)
+
+            Spacer(Modifier.height(16.dp))
 
             Text("Organise your notes with tags and search")
 
@@ -75,7 +76,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
             )
         }
     }
-
 
     if (showSheet) {
         AddNoteBottomSheetCompose(
