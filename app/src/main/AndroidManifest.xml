@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotesManager">
         <activity
-            android:name=".ui.NotesActivity"
+            android:name=".ui.xml.NotesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
