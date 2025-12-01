@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(platform(libs.androidx.compose.bom.v20241001))
     implementation(libs.androidx.compose.material3)
+    implementation(platform(libs.androidx.compose.bom.v20240902))
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.ui.tooling.preview)
     // Activity
     implementation(libs.androidx.activity.compose)

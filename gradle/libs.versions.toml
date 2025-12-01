@@ -1,6 +1,7 @@
 [versions]
 activityCompose = "1.12.0"
 agp = "8.13.1"
+androidxComposeBom = "2024.09.02"
 composeBom = "2025.11.01"
 composeBomVersion = "2024.10.01"
 kotlin = "2.0.21"
@@ -20,7 +21,9 @@ constraintlayout = "2.2.1"
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-bom-v20240902 = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-bom-v20241001 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
