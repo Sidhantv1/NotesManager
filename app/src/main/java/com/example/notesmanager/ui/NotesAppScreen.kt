@@ -54,7 +54,6 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
             Text("Notes Manager", style = MaterialTheme.typography.headlineSmall)
@@ -71,9 +70,14 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
 
             Spacer(Modifier.height(16.dp))
 
-            NotesList(notes, onDelete = { viewModel.deleteNote(it) })
+            NotesList(
+                notes,
+                onDelete = { viewModel.deleteNote(it) },
+                modifier = Modifier.weight(1f)
+            )
         }
     }
+
 
     if (showSheet) {
         AddNoteBottomSheetCompose(
@@ -133,13 +137,21 @@ fun TagFilters(viewModel: NotesViewModel) {
 }
 
 @Composable
-fun NotesList(notes: List<Note>, onDelete: (Note) -> Unit) {
-    LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+fun NotesList(
+    notes: List<Note>,
+    onDelete: (Note) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
         items(notes) { note ->
             NoteCard(note = note, onDelete = onDelete)
         }
     }
 }
+
 
 @Composable
 fun NoteCard(note: Note, onDelete: (Note) -> Unit) {
