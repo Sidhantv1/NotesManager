@@ -25,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:text="@string/organise_your_notes_with_tags_and_search"
-        android:textColor="@color/grey_shade_1"
+        android:textColor="@color/grey_shade_4"
         android:textSize="16sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,12 +38,49 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_search_view"
-        android:hint="@string/search_notes"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sub_title"
-        app:queryBackground="@null" />
+        app:queryBackground="@null"
+        app:queryHint="@string/search_notes" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_view">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_by_tags"
+            android:textColor="@color/grey_shade_4"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFilters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="12dp"
+                app:chipSpacing="8dp"
+                app:singleSelection="false" />
+
+        </HorizontalScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes"
@@ -53,10 +90,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_view" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_tags" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
