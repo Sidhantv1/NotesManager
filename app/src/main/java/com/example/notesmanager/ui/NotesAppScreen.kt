@@ -1,6 +1,6 @@
 package com.example.notesmanager.ui
 
-import android.R
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -48,8 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.notesmanager.data.Note
 import com.example.notesmanager.viewmodel.NotesViewModel
-import java.nio.file.WatchEvent
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NotesAppScreen(viewModel: NotesViewModel) {
     val notes by viewModel.notesFlow.collectAsState()
@@ -62,50 +60,50 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
             }
         }
     ) { padding ->
-        Column(
+
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
                 .background(Color(0xFFF1F1F2))
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Spacer(Modifier.height(10.dp))
-            Text(
-                "Notes Manager",
-                modifier = Modifier.fillMaxWidth(),
-                style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
-            )
 
-            Spacer(Modifier.height(16.dp))
+            item {
+                Text(
+                    "Notes Manager",
+                    style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                )
+                Spacer(Modifier.height(10.dp))
+                Text(
+                    "Organise your notes with tags and search",
+                    style = TextStyle(fontSize = 16.sp)
+                )
+                Spacer(Modifier.height(16.dp))
+            }
 
-            Text(
-                "Organise your notes with tags and search", modifier = Modifier.fillMaxWidth(),
-                style = TextStyle(fontSize = 16.sp)
-            )
+            stickyHeader {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFFF1F1F2))
+                ) {
+                    SearchBar(viewModel)
+                    Spacer(Modifier.height(12.dp))
+                }
+            }
 
-            Spacer(Modifier.height(16.dp))
+            item {
+                Text("Filter by tags:", style = TextStyle(fontSize = 16.sp))
+                Spacer(Modifier.height(12.dp))
+                TagFilters(viewModel)
+                Spacer(Modifier.height(12.dp))
+            }
 
-            SearchBar(viewModel)
-
-            Spacer(Modifier.height(12.dp))
-
-            Text(
-                "Filter by tags:",
-                modifier = Modifier.fillMaxWidth(),
-                style = TextStyle(fontSize = 16.sp)
-            )
-
-            Spacer(Modifier.height(12.dp))
-
-            TagFilters(viewModel)
-
-            Spacer(Modifier.height(16.dp))
-
-            NotesList(
-                notes,
-                onDelete = { viewModel.deleteNote(it) },
-                modifier = Modifier.weight(1f)
-            )
+            items(notes) { note ->
+                NoteCard(note = note, onDelete = { viewModel.deleteNote(it) })
+            }
         }
     }
 
@@ -125,6 +123,7 @@ fun NotesAppScreen(viewModel: NotesViewModel) {
         )
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
