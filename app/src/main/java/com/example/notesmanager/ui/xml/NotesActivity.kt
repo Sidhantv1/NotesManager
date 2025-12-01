@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.children
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -58,8 +59,20 @@ class NotesActivity : AppCompatActivity() {
                 isClickable = true
                 setChipBackgroundColorResource(R.color.tag_background)
                 setTextAppearance(R.style.TagTextStyle)
-            }
 
+                setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        viewModel.setQuery(tag)
+                    } else {
+                        val anySelected = binding.chipGroupFilters.children
+                            .any { (it as Chip).isChecked }
+
+                        if (!anySelected) {
+                            viewModel.setQuery("")
+                        }
+                    }
+                }
+            }
             binding.chipGroupFilters.addView(chip)
         }
     }
