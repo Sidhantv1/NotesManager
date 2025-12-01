@@ -90,6 +90,7 @@ class NotesActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.setQuery(newText.toString())
                 return true
             }
         })
