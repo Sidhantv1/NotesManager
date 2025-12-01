@@ -42,7 +42,14 @@ class NotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setUpTags()
+        setupRecycler()
+        observeNotes()
+        setupSearch()
+        setupFab()
+    }
 
+    private fun setUpTags() {
         tags.forEach { tag ->
             val chip = Chip(this).apply {
                 text = tag
@@ -55,11 +62,6 @@ class NotesActivity : AppCompatActivity() {
 
             binding.chipGroupFilters.addView(chip)
         }
-
-        setupRecycler()
-        observeNotes()
-        setupSearch()
-        setupFab()
     }
 
     private fun setupRecycler() {
