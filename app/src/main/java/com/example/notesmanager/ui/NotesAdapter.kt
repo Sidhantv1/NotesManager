@@ -27,8 +27,6 @@ class NotesAdapter(
         holder.binding.tvTitle.text = note.title
         holder.binding.tvBody.text = note.body
         holder.binding.tvDate.text = DateUtils.formatDate(note.createdAt)
-
-        // Tags
         holder.binding.chipGroupTags.removeAllViews()
         note.tagsCsv.split(",").forEach { tag ->
             val chip = Chip(holder.itemView.context).apply {
