@@ -177,22 +177,6 @@ fun TagFilters(viewModel: NotesViewModel) {
 }
 
 @Composable
-fun NotesList(
-    notes: List<Note>,
-    onDelete: (Note) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(notes) { note ->
-            NoteCard(note = note, onDelete = onDelete)
-        }
-    }
-}
-
-@Composable
 fun NoteCard(note: Note, onDelete: (Note) -> Unit) {
     Card(
         modifier = Modifier
@@ -205,8 +189,6 @@ fun NoteCard(note: Note, onDelete: (Note) -> Unit) {
                 .background(Color(0xFFFAFAFA))
                 .padding(16.dp)
         ) {
-
-            // Title + Delete icon
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
