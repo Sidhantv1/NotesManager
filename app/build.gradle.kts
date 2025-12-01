@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -38,6 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -50,6 +52,25 @@ dependencies {
     implementation (libs.androidx.room.ktx)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    // Compose BOM (Manages versions safely)
+    implementation(platform(libs.androidx.compose.bom))
+    // Core UI
+    implementation(libs.androidx.compose.ui)
+    implementation(platform(libs.androidx.compose.bom.v20241001))
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    // Activity
+    implementation(libs.androidx.activity.compose)
+    // Navigation (optional but recommended)
+    implementation(libs.androidx.navigation.compose)
+    // Tooling for previews
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // ViewModel + Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Runtime for StateFlow observing
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.compose.runtime)
     kapt (libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
