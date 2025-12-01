@@ -11,7 +11,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.notesmanager.R
-import com.example.notesmanager.data.AppDatabase
 import com.example.notesmanager.data.Note
 import com.example.notesmanager.databinding.ActivityNotesBinding
 import com.example.notesmanager.repository.NotesRepository
